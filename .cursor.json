@@ -1,0 +1,77 @@
+{
+  "framework": {
+    "name": "rails",
+    "version": "8.0.0",
+    "features": {
+      "authentication": "devise",
+      "authorization": "pundit",
+      "testing": {
+        "framework": "minitest",
+        "fixtures": true,
+        "systemTests": true
+      }
+    }
+  },
+  "frontend": {
+    "css": {
+      "framework": "tailwindcss",
+      "components": "flowbite",
+      "postprocessing": true
+    },
+    "javascript": {
+      "moduleSystem": "importmaps",
+      "assetPipeline": "propshaft",
+      "frameworks": [
+        {
+          "name": "turbo",
+          "description": "SPA-like page accelerator"
+        },
+        {
+          "name": "stimulus",
+          "description": "Modest JavaScript framework"
+        }
+      ]
+    }
+  },
+  "database": {
+    "development": "sqlite3",
+    "production": "postgresql",
+    "features": {
+      "encryption": true,
+      "pooling": true
+    }
+  },
+  "deployment": {
+    "containerization": "docker",
+    "orchestration": "kamal",
+    "assets": {
+      "compression": true,
+      "caching": "thruster"
+    }
+  },
+  "development": {
+    "recommended": {
+      "editor": {
+        "formatOnSave": true,
+        "tabSize": 2,
+        "insertSpaces": true,
+        "rulers": [80, 120],
+        "trimTrailingWhitespace": true,
+        "insertFinalNewline": true
+      },
+      "linting": {
+        "ruby": "rubocop",
+        "security": "brakeman"
+      },
+      "git": {
+        "conventionalCommits": true,
+        "prTemplate": true
+      }
+    },
+    "environment": {
+      "ruby": "3.3.0",
+      "node": "20.x",
+      "useDevContainer": true
+    }
+  }
+}

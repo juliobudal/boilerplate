@@ -1,0 +1,49 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create your account</h2>
+  </div>
+
+  <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+      <%= render Ui::Input::Component.new(
+        form: f,
+        field: :email,
+        type: :email,
+        label: "Email address",
+        required: true,
+        autofocus: true,
+        autocomplete: "email"
+      ) %>
+
+      <%= render Ui::Input::Component.new(
+        form: f,
+        field: :password,
+        type: :password,
+        label: "Password",
+        required: true,
+        hint: (@minimum_password_length ? "#{@minimum_password_length} characters minimum" : nil),
+        autocomplete: "new-password"
+      ) %>
+
+      <%= render Ui::Input::Component.new(
+        form: f,
+        field: :password_confirmation,
+        type: :password,
+        label: "Confirm password",
+        required: true,
+        autocomplete: "new-password"
+      ) %>
+
+      <div class="mt-6">
+        <%= render Ui::Button::Component.new(variant: :primary, full_width: true, as: :button, type: "submit") do %>
+          Sign up
+        <% end %>
+      </div>
+    <% end %>
+
+    <p class="mt-6 text-center text-sm text-gray-500">
+      Already have an account?
+      <%= link_to "Sign in", new_session_path(resource_name), class: "font-semibold leading-6 text-primary-600 hover:text-primary-500" %>
+    </p>
+  </div>
+</div>

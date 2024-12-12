@@ -1,0 +1,22 @@
+<div>
+  <% if @label %>
+    <%= @form.label @field, @label, class: label_classes %>
+  <% end %>
+
+  <div class="mt-1">
+    <%= @form.send(
+      @type == :password ? :password_field : :text_field,
+      @field,
+      class: input_classes,
+      **@options
+    ) %>
+  </div>
+
+  <% if @hint %>
+    <p class="<%= hint_classes %>"><%= @hint %></p>
+  <% end %>
+
+  <% if @error %>
+    <p class="<%= error_classes %>"><%= @error %></p>
+  <% end %>
+</div>

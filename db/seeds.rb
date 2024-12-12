@@ -7,20 +7,3 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-Landing.destroy_all
-
-Landing.create(name: "Page", content: {
-  "content": [
-    {
-      "type": "heading",
-      "id": "1234567890",
-      "content": "Título da página"
-    },
-    {
-      "type": "paragraph",
-      "id": "1234567891",
-      "content": "Conteúdo do parágrafo"
-    }
-  ]
-})

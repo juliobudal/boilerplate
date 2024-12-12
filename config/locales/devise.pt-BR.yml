@@ -1,0 +1,12 @@
+pt-BR:
+  devise:
+    failure:
+      invalid: "E-mail ou senha inválidos."
+      not_found_in_database: "E-mail ou senha inválidos."
+      unauthenticated: "Você precisa fazer login ou se registrar antes de continuar."
+    sessions:
+      signed_in: "Login realizado com sucesso."
+      signed_out: "Logout realizado com sucesso."
+    registrations:
+      signed_up: "Bem-vindo! Você se registrou com sucesso."
+      updated: "Sua conta foi atualizada com sucesso."
