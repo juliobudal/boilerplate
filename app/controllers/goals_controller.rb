@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_study_area, only: [:edit, :update, :new, :create, :destroy, :show]
-  before_action :set_goal, only: [:show, :edit, :update, :destroy, :update_status]
+  before_action :set_study_area, only: [:edit, :update, :new, :create, :destroy, :show, :update_status]
+  before_action :set_goal, only: [:show, :edit, :update, :destroy]
 
   def index
     @goals = current_user.goals.includes(:study_area).order(due_date: :asc)
@@ -43,10 +43,11 @@ class GoalsController < ApplicationController
   end
 
   def update_status
+    @goal = @study_area.goals.find(params[:id])
     if @goal.update(status: params[:status])
-      redirect_to @goal, notice: 'Goal status was successfully updated.'
+      head :ok
     else
-      redirect_to @goal, alert: 'Failed to update goal status.'
+      head :unprocessable_entity
     end
   end
 

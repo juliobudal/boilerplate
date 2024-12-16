@@ -12,19 +12,85 @@
 
   <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
     <!-- Stats -->
-    <dl class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <%= render CardComponent.new(title: t('study_areas.title')) do %>
-        <div class="text-3xl font-semibold tracking-tight text-gray-900"><%= @study_areas.count %></div>
-      <% end %>
-      
-      <%= render CardComponent.new(title: t('dashboard.active_goals')) do %>
-        <div class="text-3xl font-semibold tracking-tight text-gray-900"><%= @study_areas.sum { |area| area.goals.in_progress.count } %></div>
-      <% end %>
-      
-      <%= render CardComponent.new(title: t('dashboard.completed_goals')) do %>
-        <div class="text-3xl font-semibold tracking-tight text-gray-900"><%= @study_areas.sum { |area| area.goals.completed.count } %></div>
-      <% end %>
-    </dl>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div class="bg-white px-4 py-5 sm:px-6 rounded-lg">
+        <dt class="text-sm font-medium text-gray-500 truncate">
+          <%= t('dashboard.total_goals') %>
+        </dt>
+        <dd class="mt-1 text-3xl font-semibold text-gray-900">
+          <%= @study_areas.sum { |area| area.goals.count } %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:px-6 rounded-lg">
+        <dt class="text-sm font-medium text-gray-500 truncate">
+          <%= t('dashboard.completed_goals') %>
+        </dt>
+        <dd class="mt-1 text-3xl font-semibold text-green-600">
+          <%= @study_areas.sum { |area| area.goals.completed.count } %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:px-6 rounded-lg">
+        <dt class="text-sm font-medium text-gray-500 truncate">
+          <%= t('dashboard.completion_rate') %>
+        </dt>
+        <dd class="mt-1 text-3xl font-semibold text-indigo-600">
+          <%= number_to_percentage((@study_areas.sum { |area| area.goals.completed.count }.to_f / @study_areas.sum { |area| area.goals.count }.to_f) * 100, precision: 0) %>
+        </dd>
+      </div>
+    </div>
+
+    <!-- In Progress Goals -->
+    <div class="mt-8">
+      <div class="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white shadow">
+        <div class="px-4 py-5 sm:px-6">
+          <h2 class="text-base font-semibold leading-6 text-gray-900"><%= t('dashboard.in_progress_goals') %></h2>
+          <p class="mt-1 text-sm text-gray-500"><%= t('dashboard.in_progress_goals_description') %></p>
+        </div>
+        <div class="">
+          <div class="overflow-hidden sm:rounded-lg">
+            <ul role="list" class="divide-y divide-gray-100">
+              <% @in_progress_goals.each do |goal| %>
+                <li class="px-4 py-4 sm:px-6">
+                  <div class="flex items-center justify-between">
+                    <div class="flex min-w-0 gap-x-4">
+                      <div class="min-w-0 flex-auto">
+                        <%= link_to edit_study_area_goal_path(goal.study_area, goal), class: "group" do %>
+                          <p class="truncate text-sm font-semibold leading-6 text-gray-900 group-hover:text-indigo-600"><%= goal.title %></p>
+                          <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= goal.study_area.title %></p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="flex shrink-0 items-center gap-x-4">
+                      <div class="hidden sm:flex sm:flex-col sm:items-end">
+                        <% if goal.due_date %>
+                          <p class="text-sm leading-6 text-gray-900">
+                            <%= t('dashboard.due_date_future', time: time_ago_in_words(goal.due_date)) %>
+                          </p>
+                        <% end %>
+                        <div class="mt-1 flex items-center gap-x-1.5">
+                          <div class="flex-none rounded-full bg-emerald-500/20 p-1">
+                            <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                          </div>
+                          <p class="text-xs leading-5 text-gray-500"><%= t('goals.statuses.in_progress') %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+
+              <% if @in_progress_goals.empty? %>
+                <li class="px-4 py-4 sm:px-6">
+                  <p class="text-sm text-gray-500 text-center"><%= t('dashboard.no_in_progress_goals') %></p>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Recent Activity -->
     <div class="mt-8">
