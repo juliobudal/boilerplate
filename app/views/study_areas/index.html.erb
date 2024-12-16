@@ -1,0 +1,59 @@
+<div class="min-h-full">
+  <div class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="py-6">
+        <div>
+          <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Study Areas</h1>
+          <p class="mt-1 text-sm text-gray-500">Manage your study areas and track your learning progress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <% @study_areas.each do |study_area| %>
+        <div class="bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 rounded-lg shadow hover:shadow-lg transition-all duration-200">
+          <%= link_to study_area_path(study_area), class: "focus:outline-none" do %>
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-medium text-gray-900"><%= study_area.title %></h3>
+              <div class="flex items-center space-x-2">
+                <% if study_area.goals.count > 3 %>
+                  <span class="text-sm text-gray-500">+<%= study_area.goals.count - 3 %></span>
+                <% end %>
+              </div>
+            </div>
+            <p class="mt-2 text-sm text-gray-500"><%= study_area.description %></p>
+            <div class="mt-4">
+              <div class="flex items-center space-x-2">
+                <span class="text-sm font-medium text-gray-900"><%= study_area.goals.count %></span>
+                <span class="text-sm text-gray-500">goals</span>
+              </div>
+            </div>
+          <% end %>
+          
+          <div class="mt-4 flex items-center justify-end space-x-2">
+            <%= link_to edit_study_area_path(study_area), class: "text-gray-400 hover:text-gray-500" do %>
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
+                <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
+              </svg>
+            <% end %>
+            <%= button_to study_area_path(study_area), method: :delete, class: "text-gray-400 hover:text-gray-500", data: { turbo_confirm: "Are you sure you want to delete this study area?" } do %>
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clip-rule="evenodd" />
+              </svg>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <%= link_to new_study_area_path, class: "relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" do %>
+        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M38.419 20.81a12.5 12.5 0 00-.419 3.19c0 7.18 5.82 13 13 13M30 14l-10-2v24m0 0l10 2m-10-2v-2m10 4v-2m0-14V4m0 0L20 6m10-2l10 2m-10 38V20" />
+        </svg>
+        <span class="mt-2 block text-sm font-semibold text-gray-900">Create a new study area</span>
+      <% end %>
+    </div>
+  </div>
+</div>

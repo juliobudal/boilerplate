@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-gray-50">
+<html class="h-full bg-white">
   <head>
     <title>Authentication</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,26 +11,22 @@
   </head>
 
   <body class="h-full">
-    <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <%= link_to root_path, class: "flex justify-center" do %>
-          <span class="text-2xl font-bold">Page</span>
-        <% end %>
-      </div>
-
-      <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <% if notice %>
-            <%= render Ui::Alert::Component.new(type: :success, message: notice, dismissible: true) %>
-          <% end %>
-          
-          <% if alert %>
-            <%= render Ui::Alert::Component.new(type: :error, message: alert, dismissible: true) %>
-          <% end %>
-
-          <%= yield %>
+    <% if notice %>
+      <div class="fixed inset-x-0 top-0 z-50">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-2">
+          <%= render Ui::Alert::Component.new(type: :success, message: notice, dismissible: true) %>
         </div>
       </div>
-    </div>
+    <% end %>
+    
+    <% if alert %>
+      <div class="fixed inset-x-0 top-0 z-50">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-2">
+          <%= render Ui::Alert::Component.new(type: :error, message: alert, dismissible: true) %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= yield %>
   </body>
 </html>

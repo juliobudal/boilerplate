@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
   # Authentication routes
   devise_for :users, controllers: {
     sessions: "users/sessions",
@@ -8,11 +6,33 @@ Rails.application.routes.draw do
     passwords: "users/passwords"
   }
 
-  # Root path
-  root "home#index"
+  authenticated :user do
+    root 'dashboard#index', as: :authenticated_root
+  end
 
-  # Add your other routes below
-  get "home/index"
+  root 'home#index'
+
+  resources :study_areas do
+    resources :goals do
+      member do
+        patch :update_status
+      end
+    end
+  end
+
+  resources :goals do
+    resources :resources, shallow: true
+    resources :study_sessions, only: [:create, :index]
+    member do
+      patch :update_progress
+    end
+  end
+
+  # Place this before the standalone resources route to avoid conflict
+  get 'resources', to: 'resources#all', as: :resources
+  # resources :resources, except: [:index]
+
+  resources :tags
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -21,4 +41,6 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+
+  resource :profile, only: [:edit, :update]
 end
