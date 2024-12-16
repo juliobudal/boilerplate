@@ -1,0 +1,250 @@
+pt-BR:
+  hello: "Olá mundo"
+  
+  languages:
+    en: "Inglês"
+    pt-BR: "Português (Brasil)"
+    
+  common:
+    save: "Salvar"
+    cancel: "Cancelar"
+    edit: "Editar"
+    delete: "Excluir"
+    back: "Voltar"
+    confirm: "Confirmar"
+    actions: "Ações"
+    loading: "Carregando..."
+    search: "Buscar"
+    filter: "Filtrar"
+    all: "Todos"
+    none: "Nenhum"
+    or: "ou"
+    
+  navigation:
+    home: "Início"
+    dashboard: "Painel"
+    study_areas: "Áreas de Estudo"
+    goals: "Objetivos"
+    resources: "Recursos"
+    profile: "Perfil"
+    settings: "Configurações"
+    sign_out: "Sair"
+    
+  flash:
+    success: "Operação realizada com sucesso"
+    error: "Ocorreu um erro"
+    not_authorized: "Você não está autorizado a realizar esta ação"
+    
+  auth:
+    sign_in: "Entrar"
+    sign_up: "Cadastrar"
+    forgot_password: "Esqueceu sua senha?"
+    remember_me: "Lembrar-me"
+    no_account: "Não tem uma conta?"
+    already_account: "Já tem uma conta?"
+    min_password: "caracteres no mínimo"
+    
+  study_areas:
+    title: "Áreas de Estudo"
+    new: "Nova Área de Estudo"
+    edit: "Editar Área de Estudo"
+    create: "Criar Área de Estudo"
+    update: "Atualizar Área de Estudo"
+    back: "Voltar para Áreas de Estudo"
+    new_description: "Crie uma nova área de estudo para organizar seus objetivos de aprendizagem"
+    edit_description: "Atualize os detalhes da sua área de estudo e gerencie objetivos"
+    show_description: "Visualize e gerencie os objetivos da sua área de estudo"
+    created: "Área de estudo criada com sucesso"
+    updated: "Área de estudo atualizada com sucesso"
+    deleted: "Área de estudo excluída com sucesso"
+    confirm_delete: "Tem certeza que deseja excluir esta área de estudo?"
+    fields:
+      title: "Título"
+      description: "Descrição"
+      title_help: "Dê um nome claro e descritivo para sua área de estudo"
+      description_help: "Descreva brevemente o que você vai estudar nesta área"
+    errors:
+      header: "Por favor, corrija os seguintes erros:"
+    goals_count:
+      zero: "Nenhum objetivo"
+      one: "1 objetivo"
+      other: "%{count} objetivos"
+    actions:
+      edit: "Editar"
+      delete: "Excluir"
+      view_goals: "Ver Objetivos"
+    
+  goals:
+    title: "Objetivos"
+    title_all: "Todos os Objetivos"
+    title_for_area: "Objetivos de %{area}"
+    description_all: "Uma lista de todos os seus objetivos em diferentes áreas de estudo"
+    description_for_area: "Uma lista de todos os objetivos desta área de estudo"
+    new: "Novo Objetivo"
+    edit: "Editar Objetivo"
+    edit_description: "Atualize os detalhes do seu objetivo e gerencie recursos"
+    name: "Nome"
+    description: "Descrição"
+    description_help: "Breve descrição do que você quer alcançar"
+    deadline: "Prazo"
+    status: "Status"
+    progress: "Progresso"
+    created: "Objetivo criado com sucesso"
+    updated: "Objetivo atualizado com sucesso"
+    deleted: "Objetivo excluído com sucesso"
+    confirm_delete: "Tem certeza que deseja excluir este objetivo?"
+    no_due_date: "Sem prazo"
+    update: "Atualizar Objetivo"
+    back_to_area: "Voltar para %{area}"
+    tabs:
+      general: "Informações Gerais"
+      resources: "Recursos"
+    fields:
+      title: "Título"
+      description: "Descrição"
+      status: "Status"
+      due_date: "Data de Vencimento"
+    statuses:
+      not_started: "Não Iniciado"
+      in_progress: "Em Andamento"
+      completed: "Concluído"
+      
+  resources:
+    title: "Recursos"
+    description: "Gerencie seus materiais de estudo e referências para este objetivo"
+    new: "Novo Recurso"
+    edit: "Editar Recurso"
+    name: "Nome"
+    description_field: "Descrição"
+    url: "URL"
+    type: "Tipo"
+    tags: "Tags"
+    created: "Recurso criado com sucesso"
+    updated: "Recurso atualizado com sucesso"
+    deleted: "Recurso excluído com sucesso"
+    confirm_delete: "Tem certeza que deseja excluir este recurso?"
+    all_resources: "Todos os Recursos"
+    add_tag: "Adicionar Tag"
+    no_resources: "Nenhum recurso"
+    create_first: "Comece criando um novo recurso"
+    fields:
+      title: "Título"
+      type: "Tipo"
+      description: "Descrição"
+    
+  profile:
+    title: "Perfil"
+    edit: "Editar Perfil"
+    name: "Nome"
+    email: "E-mail"
+    current_password: "Senha Atual"
+    new_password: "Nova Senha"
+    confirm_password: "Confirmar Senha"
+    updated: "Perfil atualizado com sucesso"
+    
+  dashboard:
+    title: "Painel"
+    subtitle: "Acompanhe seu progresso de estudos e gerencie seus objetivos"
+    welcome: "Bem-vindo"
+    recent_goals: "Objetivos Recentes"
+    recent_goals_description: "Seus objetivos mais recentes em todas as áreas de estudo"
+    recent_resources: "Recursos Recentes"
+    study_areas_overview: "Visão Geral das Áreas de Estudo"
+    study_areas_description: "Visão geral de todas as suas áreas de estudo e seus objetivos"
+    no_goals: "Nenhum objetivo ainda"
+    no_resources: "Nenhum recurso ainda"
+    no_study_areas: "Nenhuma área de estudo ainda"
+    active_goals: "Objetivos Ativos"
+    completed_goals: "Objetivos Concluídos"
+    no_due_date: "Sem prazo definido"
+    due_date_future: "Vence em %{time}"
+    due_date_past: "Venceu há %{time}"
+    
+  buttons:
+    create: "Criar"
+    update: "Atualizar"
+    delete: "Excluir"
+    cancel: "Cancelar"
+    close: "Fechar"
+    save: "Salvar"
+    edit: "Editar"
+    view: "Visualizar"
+    back: "Voltar"
+    
+  confirmations:
+    title: "Tem certeza?"
+    delete: "Tem certeza que deseja excluir este item?"
+    cancel: "Esta ação não pode ser desfeita"
+    confirm: "Sim, excluir"
+    
+  errors:
+    not_found: "Não Encontrado"
+    access_denied: "Acesso Negado"
+    server_error: "Erro no Servidor"
+    form_error: "Por favor, corrija os seguintes erros:"
+    
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%Y"
+      long: "%d de %B de %Y às %H:%M"
+    am: ""
+    pm: ""
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d/%m"
+      long: "%d de %B de %Y"
+    day_names: [Domingo, Segunda-feira, Terça-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    order: [day, month, year]
+
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: "aproximadamente 1 hora"
+        other: "aproximadamente %{count} horas"
+      about_x_months:
+        one: "aproximadamente 1 mês"
+        other: "aproximadamente %{count} meses"
+      about_x_years:
+        one: "aproximadamente 1 ano"
+        other: "aproximadamente %{count} anos"
+      almost_x_years:
+        one: "quase 1 ano"
+        other: "quase %{count} anos"
+      half_a_minute: "meio minuto"
+      less_than_x_minutes:
+        one: "menos de um minuto"
+        other: "menos de %{count} minutos"
+      less_than_x_seconds:
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      over_x_years:
+        one: "mais de 1 ano"
+        other: "mais de %{count} anos"
+      x_days:
+        one: "1 dia"
+        other: "%{count} dias"
+      x_minutes:
+        one: "1 minuto"
+        other: "%{count} minutos"
+      x_months:
+        one: "1 mês"
+        other: "%{count} meses"
+      x_seconds:
+        one: "1 segundo"
+        other: "%{count} segundos"
+      x_years:
+        one: "1 ano"
+        other: "%{count} anos"
+    prompts:
+      day: "Dia"
+      hour: "Hora"
+      minute: "Minuto"
+      month: "Mês"
+      second: "Segundo"
+      year: "Ano"

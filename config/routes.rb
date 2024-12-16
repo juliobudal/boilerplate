@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  # Language switching
+  patch 'language/:locale', to: 'languages#update', as: :language
+
   resources :study_areas do
     resources :goals do
       member do

@@ -3,8 +3,8 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="py-6">
         <div>
-          <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Dashboard</h1>
-          <p class="mt-1 text-sm text-gray-500">Track your study progress and manage your goals.</p>
+          <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight"><%= t('dashboard.title') %></h1>
+          <p class="mt-1 text-sm text-gray-500"><%= t('dashboard.subtitle') %></p>
         </div>
       </div>
     </div>
@@ -12,30 +12,30 @@
 
   <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
     <!-- Stats -->
-    <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <%= render CardComponent.new(title: "Study Areas") do %>
+    <dl class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <%= render CardComponent.new(title: t('study_areas.title')) do %>
         <div class="text-3xl font-semibold tracking-tight text-gray-900"><%= @study_areas.count %></div>
       <% end %>
       
-      <%= render CardComponent.new(title: "Active Goals") do %>
+      <%= render CardComponent.new(title: t('dashboard.active_goals')) do %>
         <div class="text-3xl font-semibold tracking-tight text-gray-900"><%= @study_areas.sum { |area| area.goals.in_progress.count } %></div>
       <% end %>
       
-      <%= render CardComponent.new(title: "Completed Goals") do %>
+      <%= render CardComponent.new(title: t('dashboard.completed_goals')) do %>
         <div class="text-3xl font-semibold tracking-tight text-gray-900"><%= @study_areas.sum { |area| area.goals.completed.count } %></div>
       <% end %>
     </dl>
 
     <!-- Recent Activity -->
     <div class="mt-8">
-      <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
+      <div class="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white shadow">
         <div class="px-4 py-5 sm:px-6">
-          <h2 class="text-base font-semibold leading-6 text-gray-900">Recent Goals</h2>
-          <p class="mt-1 text-sm text-gray-500">Your most recent goals across all study areas.</p>
+          <h2 class="text-base font-semibold leading-6 text-gray-900"><%= t('dashboard.recent_goals') %></h2>
+          <p class="mt-1 text-sm text-gray-500"><%= t('dashboard.recent_goals_description') %></p>
         </div>
-        <div class="px-4 py-5 sm:p-6">
-          <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-            <ul role="list" class="divide-y divide-gray-200">
+        <div class="">
+          <div class="overflow-hidden sm:rounded-lg">
+            <ul role="list" class="divide-y divide-gray-100">
               <% @study_areas.flat_map(&:goals).sort_by(&:updated_at).reverse.first(5).each do |goal| %>
                 <li class="px-4 py-4 sm:px-6">
                   <div class="flex items-center justify-between">
@@ -50,9 +50,11 @@
                     <div class="flex shrink-0 items-center gap-x-4">
                       <div class="hidden sm:flex sm:flex-col sm:items-end">
                         <% if goal.due_date.present? %>
-                          <p class="text-sm leading-6 text-gray-900">Due <%= time_ago_in_words(goal.due_date) %> <%= goal.due_date.future? ? 'from now' : 'ago' %></p>
+                          <p class="text-sm leading-6 text-gray-900">
+                            <%= t(goal.due_date.future? ? 'dashboard.due_date_future' : 'dashboard.due_date_past', time: time_ago_in_words(goal.due_date)) %>
+                          </p>
                         <% else %>
-                          <p class="text-sm leading-6 text-gray-500">No due date set</p>
+                          <p class="text-sm leading-6 text-gray-500"><%= t('dashboard.no_due_date') %></p>
                         <% end %>
                         <div class="mt-1 flex items-center gap-x-1.5">
                           <div class="flex-none rounded-full p-1
@@ -89,22 +91,22 @@
 
     <!-- Study Areas Overview -->
     <div class="mt-8">
-      <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
+      <div class="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white shadow">
         <div class="px-4 py-5 sm:px-6">
           <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-              <h2 class="text-base font-semibold leading-6 text-gray-900">Study Areas</h2>
-              <p class="mt-1 text-sm text-gray-500">Overview of all your study areas and their goals.</p>
+              <h2 class="text-base font-semibold leading-6 text-gray-900"><%= t('study_areas.title') %></h2>
+              <p class="mt-1 text-sm text-gray-500"><%= t('dashboard.study_areas_description') %></p>
             </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-              <%= link_to "New Study Area", new_study_area_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+              <%= link_to t('study_areas.new'), new_study_area_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
             </div>
           </div>
         </div>
         <div class="px-4 py-5 sm:p-6">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <% @study_areas.each do |area| %>
-              <%= link_to study_area_path(area), class: "relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" do %>
+              <%= link_to study_area_path(area), class: "relative flex items-center space-x-3 rounded-lg border border-gray-100 bg-white px-6 py-5 shadow-sm hover:border-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" do %>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <p class="text-sm font-medium text-gray-900"><%= area.title %></p>
