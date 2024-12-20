@@ -415,6 +415,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  dotenv
   importmap-rails
   jbuilder
   kamal
@@ -438,7 +439,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.3.4p94
+   ruby 3.3.6p108
 
 BUNDLED WITH
    2.5.23
